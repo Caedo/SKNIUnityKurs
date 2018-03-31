@@ -70,7 +70,7 @@ namespace Completed {
 
 		void FireBullet() {
 			//Stwórz pocisk na określonej przez m_BulletSpawnPoint pozycji i rotacji
-			var bullet = Instantiate(m_BulletPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation);
+			Bullet bullet = Instantiate(m_BulletPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation);
 			bullet.Initialize();
 		}
 

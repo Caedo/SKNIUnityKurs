@@ -24,12 +24,12 @@ namespace Completed {
 
 		void FixedUpdate() {
 			//Pobranie wejścia z klawiatury (lub innego urządzenia)
-			var h = Input.GetAxisRaw("Horizontal");
-			var v = Input.GetAxisRaw("Vertical");
+			float h = Input.GetAxisRaw("Horizontal");
+			float v = Input.GetAxisRaw("Vertical");
 
 			//rzutowanie wektora "forward" głównej kamery na płaszczyznę XZ,
 			//Dzięki temu możemy w łatwy sposób ustalić w jakim kierunku mamy poruszyć czołgiem
-			var m_CamForward = Vector3.Scale(m_Camera.forward, new Vector3(1, 0, 1)).normalized;
+			Vector3 m_CamForward = Vector3.Scale(m_Camera.forward, new Vector3(1, 0, 1)).normalized;
 			Vector3 moveVelocity = (m_CamForward * v + m_Camera.right * h).normalized * m_Speed;
 
 			//Jeżeli chcieliśmy się poruszyć w tej klatce to ustal decelową rotacje
