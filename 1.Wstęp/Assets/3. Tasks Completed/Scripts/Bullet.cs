@@ -10,19 +10,19 @@ namespace TasksCompleted {
 		public float m_Speed; //Startowa prędkość pocisku
 
 		private Rigidbody m_Rigidbody; //Referencja do komponentu Rigidbody 
-		private void Awake() {
+		protected virtual void Awake() {
 			//Pobierz komponent
 			m_Rigidbody = GetComponent<Rigidbody>();
 		}
 
-		private void Start() {
+		protected virtual void Start() {
 			//ustal prędkość pocisku
 			m_Rigidbody.velocity = transform.forward * m_Speed;
 		}
 
 		//Funkcja wywoływana z CannonController. Zrobiona tylko po to, żeby pokazać,
 		//że się da, równie dobrze można to przenieść do Start() i nikt by nie płakał
-		public void Initialize() {
+		public virtual void Initialize() {
 			Destroy(gameObject, 5f);
 		}
 	}

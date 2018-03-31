@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -13,7 +12,7 @@ namespace TasksCompleted {
 		public LayerMask m_RayMask; //Maska warstwy, w którą możemy trafić Raycastem
 		public float m_BulletsPerSecond; //ilość pocisków na sekunde
 		public Transform m_BulletSpawnPoint; //Punkt w którym tworzymy pocisk
-		public Bullet m_BulletPrefab; //Prefab pocisku
+		public Bullet[] m_BulletPrefabs; //Prefaby pocisków
 
 		private float m_TimeBetweenBullets; //czas, jaki musimy odczekać pomiędzy strzałem pocisków
 		private float m_Timer; //timer... Zawsze zeruj!
@@ -70,7 +69,8 @@ namespace TasksCompleted {
 
 		void FireBullet() {
 			//Stwórz pocisk na określonej przez m_BulletSpawnPoint pozycji i rotacji
-			var bullet = Instantiate(m_BulletPrefab, m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation);
+			int rand = Random.Range(0, m_BulletPrefabs.Length);
+			Bullet bullet = Instantiate(m_BulletPrefabs[rand], m_BulletSpawnPoint.position, m_BulletSpawnPoint.rotation);
 			bullet.Initialize();
 		}
 
