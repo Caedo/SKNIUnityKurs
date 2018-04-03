@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Start {
+namespace Completed {
 
 	[RequireComponent(typeof(Rigidbody))]
 	public class Bullet : MonoBehaviour {

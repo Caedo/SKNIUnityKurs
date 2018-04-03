@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Start {
+namespace TasksCompleted {
 	public class ExplosiveBullet : Bullet {
 
 		public float m_ExplosionRadius; //Promień eksplozji

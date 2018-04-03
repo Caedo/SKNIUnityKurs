@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Start {
+namespace TasksCompleted {
 	public class CannonController : MonoBehaviour {
 
 		//Enum Określający typ strzału

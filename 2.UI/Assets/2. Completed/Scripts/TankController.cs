@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Start {
+namespace Completed {
 	public class TankController : MonoBehaviour {
 
 		public float m_Speed; //Prędkość poruszania czołgu
