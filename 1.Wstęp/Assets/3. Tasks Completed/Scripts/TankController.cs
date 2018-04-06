@@ -56,8 +56,9 @@ namespace TasksCompleted {
 			//ustalenie prędkości do przodu, jeżeli jest aktywne turbo, użyj tej prędkości
 			Vector3 forwardVel = transform.forward * v * (m_TurboActive ? m_TurboSpeed : m_Speed);
 			//Ustalenie zmiany rotacji w stopniach/sek
-			//użyto kątów Eulera zapisanych w klasie Vector3
-			Vector3 rotation = transform.up * h * m_RotationSpeed * Time.deltaTime;
+			//użyto kątów Eulera zapisanych w obiekcie klasy Vector3
+			//Dla poruszania w tył rotacja jest odwrócona - bardziej intuicyjne
+			Vector3 rotation = transform.up * h * m_RotationSpeed * Time.deltaTime * Mathf.Sign(v);
 
 			//przypisanie prędkości
 			m_Rigidbody.velocity = forwardVel;
