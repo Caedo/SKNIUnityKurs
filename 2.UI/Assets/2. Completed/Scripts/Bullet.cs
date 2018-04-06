@@ -10,9 +10,11 @@ namespace Completed {
 		public float m_Speed; //Startowa prędkość pocisku
 
 		private Rigidbody m_Rigidbody; //Referencja do komponentu Rigidbody 
+		private AudioSource m_BoomAudio;
 		protected virtual void Awake() {
 			//Pobierz komponent
 			m_Rigidbody = GetComponent<Rigidbody>();
+			m_BoomAudio = GetComponentInChildren<AudioSource>();
 		}
 
 		protected virtual void Start() {
@@ -24,6 +26,15 @@ namespace Completed {
 		//że się da, równie dobrze można to przenieść do Start() i nikt by nie płakał
 		public virtual void Initialize() {
 			Destroy(gameObject, 5f);
+		}
+
+		protected virtual void OnCollisionEnter(Collision other) {
+			if (m_BoomAudio) {
+				m_BoomAudio.transform.parent = null;
+				m_BoomAudio.Play();
+				Destroy(m_BoomAudio.gameObject, m_BoomAudio.clip.length);
+			}
+			Destroy(gameObject);
 		}
 	}
 }

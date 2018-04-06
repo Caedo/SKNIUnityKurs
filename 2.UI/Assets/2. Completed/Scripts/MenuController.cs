@@ -5,7 +5,7 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace Complete {
+namespace Completed {
 	public class MenuController : MonoBehaviour {
 
 		[Header("Panels")]

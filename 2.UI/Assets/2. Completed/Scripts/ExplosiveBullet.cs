@@ -10,7 +10,7 @@ namespace Completed {
 
 		//Ta funkcja jest wywoływana, jeżeli komponent Collider przetnie inny kolider, należący do innego obiektu
 		//checkbox "Is Trigger" musi być zaznaczony w Inspektorze
-		private void OnTriggerEnter(Collider other) {
+		protected override void OnCollisionEnter(Collision other) {
 			//Znajdź wszystkie collidery w promieniu eksplozji
 			Collider[] colliders = Physics.OverlapSphere(transform.position, m_ExplosionRadius);
 
@@ -26,8 +26,7 @@ namespace Completed {
 				}
 			}
 
-			//na samym końcu zniszcz samego siebie
-			Destroy(gameObject);
+			base.OnCollisionEnter(other);
 		}
 	}
 }
