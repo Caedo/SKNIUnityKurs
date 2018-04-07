@@ -1,21 +1,20 @@
-# Wstęp - "Czy jedzie mi tu czołg?"
+# UI i Audio - "Programowanie gier jest ogólnie fajne, poza jednym wyjątkiem"
 
 ## Materiały:
 
-* [Unity Essentials](https://unity3d.com/learn/tutorials/topics/interface-essentials)
-* [Strona z oficjalnymi tutorialami Unity](https://unity3d.com/learn/tutorials)
-* [Dokumentacja Unity (CZYTAJCIE ZAWSZE KIEDY MACIE WĄTPLIWOŚCI!)](https://docs.unity3d.com/ScriptReference/index.html)
-* [Wstęp do Unity by Sebastian Lague](https://www.youtube.com/playlist?list=PLFt_AvWsXl0fnA91TcmkRyhhixX9CO3Lw)
-* [Wstęp do Cinemachine](https://www.youtube.com/watch?v=Gx9gZ9cfrys)
-* [Wykład o Cinemachine, Unite 2017](https://www.youtube.com/watch?v=r1SkOoJJRAA)
-* [Przegrani!](https://www.youtube.com/channel/UCeRQEfSlTJeh0nezitDIigw)
+* [Oficjalny tutorial Unity o UI](https://unity3d.com/learn/tutorials/topics/interface-essentials/interface-overview)
+* [Oficjalny tutorial Unity o Audio](https://unity3d.com/learn/tutorials/topics/audio/audio-listeners-sources?playlist=17096)
+* [Łatwy w użyciu system menu (Unite 2017)](https://www.youtube.com/watch?v=wbmjturGbAQ)
+* [Ogólnie o UI w Unity (Unite 2017)](https://youtu.be/j03EKMmlJJs)
+* [Proste menu z użyciem Text Mesh Pro](https://youtu.be/zc8ac_qUXQY)
 
+Niestety nie znam więcej dobrych materiałów pokrywających te tematy
 ## Zadania:
 
-### Dla ćwiczeń warto wykonać poniższe zadania. Jeżeli się gdzieś zatniesz każde z nich jest zrobione w folderze "3. Tasks Completed".
+### Kappa
 
-* Zmień sposób sterowania czołgiem na trochę bardziej cywilizowany,
-czyli poruszamy się przód-tył klawiszami WS (lub strzałki góra, dół), a obracamy czołg w okół własnej osi klawiszami AD (lub prawo, lewo).
-* Zmodyfikuj CannonController tak, aby mógł przyjąć więcej prefabów pocisku (tablica albo lista) i w momencie strzału losowało prefab, który ma być stworzony. Oczywiście stwórz także więcej prefabów pocisków, które różnią się wyglądem i prędkością.
-* Stwórz nowy skrypt ExplosiveBullet, który jak sama nazwa wskazuje, ma wybuchać po zetknięciu z innym obiektem. Skrypt powinien dziedziczyć po Bullet, a eksplozja odpychać wszystkie obiekty posiadające Rigidbody w zasięgu. Warto użyć metody [Rigidbody.AddExplosionForce()](https://docs.unity3d.com/ScriptReference/Rigidbody.html) i [Physics.OverlapSphere()](https://docs.unity3d.com/ScriptReference/Physics.OverlapSphere.html). 
-* Dodaj do TankControler "tryb turbo", czyli chwilowe zwiększenie prędkości poruszania się z pewnym cooldownem pomiędzy kolejnymi użyciami. Będą przydatne [korutyny](https://docs.unity3d.com/Manual/Coroutines.html).
+* Zbuduj odpowiednie UI na scenie głównej. Powinno odpowiednio się skalować, na ten moment nie musi być funkcjonalne (w sumie na razie nie ma po co...). Może zawierać pasek zdrowia, czas gry, punkty, etc.
+
+* Dodaj do interfejsu jakiś obiekt informujący o stanie "turbo", jeżeli zrobiłeś je na timerach, zrób slider, który zjeżdża do zera gdy tryb jest uruchomiony i wzrasta, gdy mija cooldown. Jeżeli zrobiłeś na korutynach (jak ja) to wystarczy zwykły obrazek zmieniający kolor (zielony - gotowy, niebieski - aktywny, czerwony - cooldown).
+
+*  Spróbuj zmiksować dźwięk silnika. Gdy się nie ruszamy słychać tylko EngineIdle, gdy ruszamy dźwięk przechodzi tylko na EngineDriving. Najprościej zrobić to używając dwóch źródeł dźwięku i zmieniać im parametr volume, Mathf.Lerp twoim przyjacielem.
