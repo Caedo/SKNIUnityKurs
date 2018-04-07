@@ -8,8 +8,8 @@ namespace Completed {
 		public float m_ExplosionRadius; //Promień eksplozji
 		public float m_ExplosionForce; //Siła eksplozji
 
-		//Ta funkcja jest wywoływana, jeżeli komponent Collider przetnie inny kolider, należący do innego obiektu
-		//checkbox "Is Trigger" musi być zaznaczony w Inspektorze
+		//Obsługa kolizji - zmiana względem poprzedniego projektu,
+		//Teraz używamy OnCollisionEnter, a nie OnTriggerEnter
 		protected override void OnCollisionEnter(Collision other) {
 			//Znajdź wszystkie collidery w promieniu eksplozji
 			Collider[] colliders = Physics.OverlapSphere(transform.position, m_ExplosionRadius);
@@ -26,6 +26,7 @@ namespace Completed {
 				}
 			}
 
+			//Jeżeli skończyliśmy z eksplozją, resztę zostawiamy funkcji bazowej
 			base.OnCollisionEnter(other);
 		}
 	}

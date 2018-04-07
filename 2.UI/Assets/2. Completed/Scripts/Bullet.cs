@@ -8,13 +8,12 @@ namespace Completed {
 	public class Bullet : MonoBehaviour {
 
 		public float m_Speed; //Startowa prędkość pocisku
+		public AudioSource m_BoomAudio;
 
 		private Rigidbody m_Rigidbody; //Referencja do komponentu Rigidbody 
-		private AudioSource m_BoomAudio;
 		protected virtual void Awake() {
 			//Pobierz komponent
 			m_Rigidbody = GetComponent<Rigidbody>();
-			m_BoomAudio = GetComponentInChildren<AudioSource>();
 		}
 
 		protected virtual void Start() {
@@ -28,12 +27,20 @@ namespace Completed {
 			Destroy(gameObject, 5f);
 		}
 
+		//Osługa kolizji
 		protected virtual void OnCollisionEnter(Collision other) {
+
+			//Jeżeli mamy referencje do jakiegoś źródła dźwięku...
 			if (m_BoomAudio) {
-				m_BoomAudio.transform.parent = null;
-				m_BoomAudio.Play();
-				Destroy(m_BoomAudio.gameObject, m_BoomAudio.clip.length);
+				//Tworzymy jego kopię...
+				var spawned = Instantiate(m_BoomAudio, transform.position, transform.rotation);
+				//I niszczymy ją po tym jak odtworzy całość klipu
+				Destroy(spawned.gameObject, spawned.clip.length);
+			} else {
+				//W przeciwnym wypadku wypisujemy warning
+				Debug.LogWarning("Bullet Script don't have Audio Prefab referenced");
 			}
+			//Na koniec niszczymy siebie
 			Destroy(gameObject);
 		}
 	}
