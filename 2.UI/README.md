@@ -15,6 +15,8 @@ Niestety nie znam więcej dobrych materiałów pokrywających te tematy
 
 * Zbuduj odpowiednie UI na scenie głównej. Powinno odpowiednio się skalować, na ten moment nie musi być funkcjonalne (w sumie na razie nie ma po co...). Może zawierać pasek zdrowia, czas gry, punkty, etc.
 
-* Dodaj do interfejsu jakiś obiekt informujący o stanie "turbo", jeżeli zrobiłeś je na timerach, zrób slider, który zjeżdża do zera gdy tryb jest uruchomiony i wzrasta, gdy mija cooldown. Jeżeli zrobiłeś na korutynach (jak ja) to wystarczy zwykły obrazek zmieniający kolor (zielony - gotowy, niebieski - aktywny, czerwony - cooldown).
+* Dodaj do interfejsu jakiś obiekt informujący o stanie "turbo", jeżeli zrobiłeś je na timerach, zrób slider, który zjeżdża do zera gdy tryb jest uruchomiony i wzrasta, gdy mija cooldown. Jeżeli zrobiłeś na korutynach (jak ja) to wystarczy zwykły obrazek zmieniający kolor (zielony - gotowy, niebieski - aktywny, czerwony - cooldown), ponieważ inaczej może być dość trudno.
 
 *  Spróbuj zmiksować dźwięk silnika. Gdy się nie ruszamy słychać tylko EngineIdle, gdy ruszamy dźwięk przechodzi tylko na EngineDriving. Najprościej zrobić to używając dwóch źródeł dźwięku i zmieniać im parametr volume, Mathf.Lerp twoim przyjacielem.
+
+* Spróbuj zrobić menu pauzy z dwoma przyciskami: powrót do gry i menu główne. Przy tej okazji trzeba rozwiązać parę problemów jak wstrzymanie czasu gry, oraz duplikat muzyki za każdym razem, gdy wchodzimy do menu (mówiłem, że DontDestroyOnLoad jest złe :P).

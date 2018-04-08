@@ -5,11 +5,20 @@ using UnityEngine;
 namespace TasksCompleted {
 	public class TankController : MonoBehaviour {
 
+		public enum TurboState { Ready, Active, Cooldown }
+
 		public float m_Speed; //Prędkość poruszania czołgu
 		public float m_TurboSpeed; //Prędkość podczas turbo
 		public float m_TurboTime; //Czas trwania turbo
 		public float m_TurboCooldown; //Cooldown trybu turbo
 		public float m_RotationSpeed; //Prędkość rotacji
+
+		[Header("Audio")]
+		public AudioSource m_IdleAudio;
+		public AudioSource m_DrivingAudio;
+		
+
+		public System.Action<TurboState> OnTurboStateChanged;
 
 		private Rigidbody m_Rigidbody; //"Ciało sztywne" naszego czołgu
 		private bool m_TurboActive; //Czy tyrbo jest aktywne
@@ -20,6 +29,10 @@ namespace TasksCompleted {
 			m_Rigidbody = GetComponent<Rigidbody>();
 		}
 
+		private void Start() {
+			if (OnTurboStateChanged != null)
+				OnTurboStateChanged(TurboState.Ready);
+		}
 		private void Update() {
 			//Jeżeli został naciśnięty lewy shift i możemy aktywować turbo...
 			if (Input.GetKeyDown(KeyCode.LeftShift) && m_CanActiveTurbo) {
@@ -35,15 +48,21 @@ namespace TasksCompleted {
 			m_TurboActive = true;
 			m_CanActiveTurbo = false;
 
+			if (OnTurboStateChanged != null)
+				OnTurboStateChanged(TurboState.Active);
 			//poczekaj czas trwania...
 			yield return new WaitForSeconds(m_TurboTime);
 
+			if (OnTurboStateChanged != null)
+				OnTurboStateChanged(TurboState.Cooldown);
 			//następnie ustaw flagę: turbo nie jest aktywne
 			m_TurboActive = false;
 
 			//przeczekaj cooldown...
 			yield return new WaitForSeconds(m_TurboCooldown);
 
+			if (OnTurboStateChanged != null)
+				OnTurboStateChanged(TurboState.Ready);
 			//i ustaw flagę: można aktywować turbo
 			m_CanActiveTurbo = true;
 		}
