@@ -9,6 +9,8 @@
 * [Wstęp do Cinemachine](https://www.youtube.com/watch?v=Gx9gZ9cfrys)
 * [Wykład o Cinemachine, Unite 2017](https://www.youtube.com/watch?v=r1SkOoJJRAA)
 * [Przegrani!](https://www.youtube.com/channel/UCeRQEfSlTJeh0nezitDIigw)
+* [Co to są Game Jamy? - polecam](https://youtu.be/NUY7pMJ5WPw)
+* [Game Jamy: Jak z nich skorzystać?](https://youtu.be/a27EdTowVYo)
 
 ## Zadania:
 
