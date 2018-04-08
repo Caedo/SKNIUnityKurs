@@ -6,6 +6,8 @@ using UnityEngine.UI;
 namespace TasksCompleted {
 	public class TurboUI : MonoBehaviour {
 
+		public TankController m_PlayerTank;
+
 		public Color m_TurboReadyColor;
 		public Color m_TurboActiveColor;
 		public Color m_TurboCooldownColor;
@@ -13,7 +15,7 @@ namespace TasksCompleted {
 		public Image m_TurboImage;
 
 		private void Awake() {
-			FindObjectOfType<TankController>().OnTurboStateChanged += ChangeImageColor;
+			m_PlayerTank.OnTurboStateChanged += ChangeImageColor;
 		}
 
 		void ChangeImageColor(TankController.TurboState state) {

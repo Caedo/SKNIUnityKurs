@@ -16,13 +16,16 @@ namespace TasksCompleted {
 		[Header("Audio")]
 		public AudioSource m_IdleAudio;
 		public AudioSource m_DrivingAudio;
+		public float m_AudioBlendSpeed;
 		
-
 		public System.Action<TurboState> OnTurboStateChanged;
 
 		private Rigidbody m_Rigidbody; //"Ciało sztywne" naszego czołgu
 		private bool m_TurboActive; //Czy tyrbo jest aktywne
 		private bool m_CanActiveTurbo = true; //Czy można aktywować turbo
+
+		private float m_AudioBlendPercent;
+		private int m_AudioBlendDirection;
 
 		private void Awake() {
 			//Inicjalizacja zmiennych
@@ -86,6 +89,16 @@ namespace TasksCompleted {
 			//musimy podać aktualną rotację + zmianę rotacji. Mnożenie kwaternionów odpowiada
 			//dodawaniu rotacji (chyba, nie jestem matematykiem :<)
 			m_Rigidbody.MoveRotation(m_Rigidbody.rotation * Quaternion.Euler(rotation));
+
+
+			//----Audio things
+			m_AudioBlendDirection = (h != 0 || v != 0) ? 1 : -1;
+			m_AudioBlendPercent += m_AudioBlendSpeed * Time.fixedDeltaTime * m_AudioBlendDirection;
+			m_AudioBlendPercent = Mathf.Clamp01(m_AudioBlendPercent);
+
+			m_IdleAudio.volume = Mathf.Lerp(1, 0, m_AudioBlendPercent);
+			m_DrivingAudio.volume = Mathf.Lerp(0, 1, m_AudioBlendPercent);
+			
 		}
 	}
 }
