@@ -1,31 +1,24 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using UnityEngine;
 using UnityEngine.UI;
-using System.Collections;
 
-namespace Completed
-{
-    public class ScoreManager : MonoBehaviour
-    {
-        public static int score;        // The player's score.
+namespace Completed {
+    public class ScoreManager : MonoBehaviour {
+        private int score; // The player's score.
 
+        public Text text; // Reference to the Text component.
 
-        Text text;                      // Reference to the Text component.
-
-
-        void Awake ()
-        {
-            // Set up the reference.
-            text = GetComponent <Text> ();
-
-            // Reset the score.
-            score = 0;
+        void Awake() {
+            EnemyHealth.OnEnemyDeath += OnEnemyDeath;
         }
 
-
-        void Update ()
-        {
-            // Set the displayed text to be the word "Score" followed by the score value.
+        void OnEnemyDeath(EnemyHealth health) {
+            score += health.scoreValue;
             text.text = "Score: " + score;
+        }
+
+        private void OnDisable() {
+            EnemyHealth.OnEnemyDeath -= OnEnemyDeath;
         }
     }
 }
