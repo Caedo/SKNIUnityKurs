@@ -1,4 +1,4 @@
-# Architektura prostej gry - "Programowanie gier jest ogólnie fajne, poza jednym wyjątkiem"
+# Architektura prostej gry - "Czy coś się zdarzyło?"
 
 ## Materiały:
 
@@ -7,6 +7,6 @@
 * [System zdarzeń dla Unity] (http://www.indiedb.com/members/damagefilter/blogs/event-and-unity)
 * [Architektura gry w oparciu o Scriptable Object (Unity 2017)](https://youtu.be/raQ3iHhE_Kk)
 
-##Zadanka:
+## Zadanka:
 W sumie nic konkretnego, weźcie ten projekt, pobawcie się nim, spróbujcie dodać elementy, jakich wam brakuje. Dla przykładu 
 nowe typy uzbrojenia, power upy, inne rodzaje przeciwników ([AAAAAAAA](https://www.youtube.com/watch?v=rDlI6itmr34)) i tak dalej.
