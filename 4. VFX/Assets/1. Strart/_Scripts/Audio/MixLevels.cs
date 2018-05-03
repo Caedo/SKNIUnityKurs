@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.Audio;
 
 namespace Completed {
-	public class CompMixLevels : MonoBehaviour {
+	public class MixLevels : MonoBehaviour {
 
 		public AudioMixer masterMixer;
 
