@@ -9,19 +9,27 @@ namespace Completed {
 		public Image damageImage; // Reference to an image to flash on the screen on being hurt.
 		public float flashSpeed = 5f; // The speed the damageImage will fade at.
 		public Color flashColour = new Color(1f, 0f, 0f, 0.1f); // The colour the damageImage is set to, to flash
+		public Color healColor = new Color(0, 1, 0, 0.1f);
 
 		public PlayerHealth m_PlayerHealth;
 
 		bool damaged;
+		bool healed;
 
 		private void Awake() {
 			m_PlayerHealth.OnPlayerHit += OnPlayerHit;
+			m_PlayerHealth.OnPlayerHealed += OnPlayerHealed;
 		}
 
-		void OnPlayerHit() { 
+		void OnPlayerHit() {
 			damaged = true;
 
-			healthSlider.value = (float)m_PlayerHealth.CurrentHealth / m_PlayerHealth.m_StartingHealth;
+			healthSlider.value = (float) m_PlayerHealth.CurrentHealth / m_PlayerHealth.m_StartingHealth;
+		}
+
+		void OnPlayerHealed() {
+			healed = true;
+			healthSlider.value = (float) m_PlayerHealth.CurrentHealth / m_PlayerHealth.m_StartingHealth;			
 		}
 
 		void Update() {
@@ -31,6 +39,9 @@ namespace Completed {
 				damageImage.color = flashColour;
 			}
 			// Otherwise...
+			else if(healed){
+				damageImage.color = healColor;
+			}
 			else {
 				// ... transition the colour back to clear.
 				damageImage.color = Color.Lerp(damageImage.color, Color.clear, flashSpeed * Time.deltaTime);
@@ -38,6 +49,7 @@ namespace Completed {
 
 			// Reset the damaged flag.
 			damaged = false;
+			healed = false;
 		}
 	}
 }

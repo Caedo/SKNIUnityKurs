@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Completed {
 	public class LivingEntity : MonoBehaviour {
 		public int m_StartingHealth;
-		public int CurrentHealth { get; private set; }
+		public int CurrentHealth { get; protected set; }
 
 		public AudioClip m_DeathClip;
 

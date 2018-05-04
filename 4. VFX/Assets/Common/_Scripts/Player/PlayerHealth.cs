@@ -9,6 +9,7 @@ namespace Completed {
         PlayerShooting playerShooting; // Reference to the PlayerShooting script.    
 
         public event System.Action OnPlayerHit;
+        public event System.Action OnPlayerHealed;
         public event System.Action OnPlayerDeath;
 
         protected override void Awake() {
@@ -21,9 +22,22 @@ namespace Completed {
         public override void TakeDamage(int amount, Vector3? hitPoint = null) {
             base.TakeDamage(amount, hitPoint);
 
-            if(OnPlayerHit != null) {
+            if (OnPlayerHit != null) {
                 OnPlayerHit();
             }
+        }
+
+        public bool Heal(int amount) {
+            if (CurrentHealth == m_StartingHealth) {
+                return false;
+            }
+
+            CurrentHealth += amount;
+            CurrentHealth = Mathf.Clamp(CurrentHealth, 0, m_StartingHealth);
+
+            OnPlayerHealed?.Invoke();
+
+            return true;
         }
 
         protected override void Death() {
@@ -39,7 +53,7 @@ namespace Completed {
             playerMovement.enabled = false;
             playerShooting.enabled = false;
 
-            if(OnPlayerDeath != null) {
+            if (OnPlayerDeath != null) {
                 OnPlayerDeath();
             }
         }
