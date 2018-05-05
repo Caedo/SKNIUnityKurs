@@ -11,6 +11,7 @@ public class HealthPickUp : MonoBehaviour {
 
 	[Header("Animation")]
 	public float m_RotationSpeed;
+	public Transform m_GraphicsTransform;
 
 	private void Start() {
 		gameObject.SetActive(false);
@@ -18,7 +19,7 @@ public class HealthPickUp : MonoBehaviour {
 	}
 
 	private void Update() {
-		transform.Rotate(transform.up, m_RotationSpeed * Time.deltaTime);
+		m_GraphicsTransform.Rotate(Vector3.up, m_RotationSpeed * Time.deltaTime, Space.World);
 	}
 
 	void Refresh() {
@@ -30,6 +31,7 @@ public class HealthPickUp : MonoBehaviour {
 			Completed.PlayerHealth health = other.GetComponent<Completed.PlayerHealth>();
 			if (health.Heal(m_HealAmount)) {
 				gameObject.SetActive(false);
+				Invoke("Refresh", Random.Range(m_MinShowTime, m_MaxShowTime));
 			}
 		}
 	}

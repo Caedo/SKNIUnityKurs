@@ -1,16 +1,21 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnitySampleAssets.CrossPlatformInput;
 
 namespace Completed {
-    public class PlayerShooting : MonoBehaviour {
 
-        public enum ShootingType { Machinegun, Charging }
-        public ShootingType shootingType;
-
-        [Header("Machinegun")]
+    [System.Serializable]
+    public class GunData {
         public int damagePerShot = 20; // The damage inflicted by each bullet.
         public float timeBetweenBullets = 0.15f; // The time between each shot.
         public float range = 100f; // The distance the gun can fire.
+
+        public Color color;
+        public ParticleSystem particles;
+    }
+    public class PlayerShooting : MonoBehaviour {
+
+        public List<GunData> m_GunData;
 
         float timer; // A timer to determine when to fire.
         Ray shootRay = new Ray(); // A ray from the gun end forwards.
@@ -21,7 +26,10 @@ namespace Completed {
         AudioSource gunAudio; // Reference to the audio source.
         Light gunLight; // Reference to the light component.
         public Light faceLight; // Duh
-        float effectsDisplayTime = 0.2f; // The proportion of the timeBetweenBullets that the effects will display for.
+        public float effectsDisplayTime = 0.2f; // time effects will display for.
+
+        GunData currentGunData;
+        ParticleSystem gunParticles;
 
         void Awake() {
             // Create a layer mask for the Shootable layer.
@@ -31,7 +39,9 @@ namespace Completed {
             gunLine = GetComponent<LineRenderer>();
             gunAudio = GetComponent<AudioSource>();
             gunLight = GetComponent<Light>();
-            //faceLight = GetComponentInChildren<Light> ();
+            faceLight = GetComponentInChildren<Light>();
+
+            SetCurrentGunData(0);
         }
 
         void Update() {
@@ -39,16 +49,46 @@ namespace Completed {
             timer += Time.deltaTime;
 
             // If the Fire1 button is being press and it's time to fire...
-            if (Input.GetButton("Fire1") && timer >= timeBetweenBullets && Time.timeScale != 0) {
+            if (Input.GetButton("Fire1") && timer >= currentGunData.timeBetweenBullets && Time.timeScale != 0) {
                 // ... shoot the gun.
                 Shoot();
             }
 
             // If the timer has exceeded the proportion of timeBetweenBullets that the effects should be displayed for...
-            if (timer >= timeBetweenBullets * effectsDisplayTime) {
+            if (timer >= effectsDisplayTime) {
                 // ... disable the effects.
                 DisableEffects();
             }
+
+            if (Input.GetKeyDown(KeyCode.Alpha1)) {
+                SetCurrentGunData(0);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha2)) {
+                SetCurrentGunData(1);
+            }
+
+            if (Input.GetKeyDown(KeyCode.Alpha3)) {
+                SetCurrentGunData(2);
+            }
+        }
+
+        void SetCurrentGunData(int index) {
+            currentGunData = m_GunData[index];
+
+            gunLine.endColor = currentGunData.color;
+            gunLine.startColor = currentGunData.color;
+
+            if (gunParticles != null) {
+                Destroy(gunParticles.gameObject);
+                gunParticles = null;
+            }
+            if (currentGunData.particles != null) {
+                gunParticles = Instantiate(currentGunData.particles, transform);
+                gunParticles.transform.position = Vector3.zero;
+            }
+
+            gunLight.color = currentGunData.color;
         }
 
         public void DisableEffects() {
@@ -78,6 +118,10 @@ namespace Completed {
             gunLight.enabled = true;
             faceLight.enabled = true;
 
+            //fire Particles
+            gunParticles?.Stop();
+            gunParticles?.Play();
+
             // Enable the line renderer and set it's first position to be the end of the gun.
             gunLine.enabled = true;
             gunLine.SetPosition(0, transform.position);
@@ -87,14 +131,14 @@ namespace Completed {
             shootRay.direction = transform.forward;
 
             // Perform the raycast against gameobjects on the shootable layer and if it hits something...
-            if (Physics.Raycast(shootRay, out shootHit, range, shootableMask)) {
+            if (Physics.Raycast(shootRay, out shootHit, currentGunData.range, shootableMask)) {
                 // Try and find an EnemyHealth script on the gameobject hit.
                 EnemyHealth enemyHealth = shootHit.collider.GetComponent<EnemyHealth>();
 
                 // If the EnemyHealth component exist...
                 if (enemyHealth != null) {
                     // ... the enemy should take damage.
-                    enemyHealth.TakeDamage(damagePerShot, shootHit.point);
+                    enemyHealth.TakeDamage(currentGunData.damagePerShot, shootHit.point);
                 }
 
                 // Set the second position of the line renderer to the point the raycast hit.
@@ -103,7 +147,7 @@ namespace Completed {
             // If the raycast didn't hit anything on the shootable layer...
             else {
                 // ... set the second position of the line renderer to the fullest extent of the gun's range.
-                gunLine.SetPosition(1, shootRay.origin + shootRay.direction * range);
+                gunLine.SetPosition(1, shootRay.origin + shootRay.direction * currentGunData.range);
             }
         }
     }
