@@ -9,3 +9,4 @@
 * [Postprocess v1, krótki tutorial](https://www.youtube.com/watch?v=a0OQvWAPeuo)
 
 ## Zadanka:
+* Spróbujcie ogarnąć ten chaos, który powstał po zajęciach, czyli wywalić niepotrzebne cząsteczki, dostosować post process i dodać co dodać pasuje
