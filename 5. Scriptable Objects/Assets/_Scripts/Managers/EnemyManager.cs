@@ -29,11 +29,12 @@ namespace Completed {
             // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
             //InvokeRepeating("Spawn", spawnTime, spawnTime);
             m_CurrentDifficulty = m_DifficultyData[GameSettingsManager.Instance.DifficultyIndex];
-            
-            for (int i = 0; i < m_CurrentDifficulty.spawnData.Count; i++)
-            {
+
+            for (int i = 0; i < m_CurrentDifficulty.spawnData.Count; i++) {
                 StartCoroutine(SpawnEnemy(m_CurrentDifficulty.spawnData[i]));
             }
+
+            playerHealth.OnPlayerDeath += OnPLayerDeath;
         }
 
         IEnumerator SpawnEnemy(EnemySpawnData data) {
@@ -44,6 +45,10 @@ namespace Completed {
                 int index = Random.Range(0, spawnPoints.Length);
                 Instantiate(data.enemyPrefab, spawnPoints[index].position, spawnPoints[index].rotation);
             }
+        }
+
+        void OnPLayerDeath() {
+            StopAllCoroutines();
         }
 
         // void Spawn() {
