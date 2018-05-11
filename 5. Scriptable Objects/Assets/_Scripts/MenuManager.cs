@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour {
@@ -24,6 +25,7 @@ public class MenuManager : MonoBehaviour {
 				break;
 		}
 
-		Debug.Log(diffIndex);
+		GameSettingsManager.Instance.DifficultyIndex = diffIndex;
+		SceneManager.LoadScene(1);
 	}
 }

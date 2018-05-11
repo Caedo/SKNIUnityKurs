@@ -123,8 +123,6 @@ GameObject:
   m_Component:
   - component: {fileID: 14871712}
   - component: {fileID: 14871711}
-  - component: {fileID: 14871710}
-  - component: {fileID: 14871709}
   m_Layer: 0
   m_Name: EnemyManager
   m_TagString: Untagged
@@ -132,38 +130,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &14871709
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 14871708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0aca954c6f3d9e4695a74b5b5463e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 1290632333}
-  enemy: {fileID: 153412, guid: 71db3d5474dae524ea5a4ac352f9f2ae, type: 2}
-  spawnTime: 15
-  spawnPoints:
-  - {fileID: 933997770}
---- !u!114 &14871710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 14871708}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a0aca954c6f3d9e4695a74b5b5463e65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerHealth: {fileID: 1290632333}
-  enemy: {fileID: 100000, guid: 5f7236760e231504db575c1b6b2b11df, type: 2}
-  spawnTime: 3
-  spawnPoints:
-  - {fileID: 1725468539}
 --- !u!114 &14871711
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -175,11 +141,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aca954c6f3d9e4695a74b5b5463e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_DifficultyData:
+  - spawnData:
+    - enemyPrefab: {fileID: 114729538430417308, guid: ca17e590fd91e4f46a2271be33acf355,
+        type: 2}
+      spawnTime: 2
+    - enemyPrefab: {fileID: 114989035436108382, guid: 5f7236760e231504db575c1b6b2b11df,
+        type: 2}
+      spawnTime: 2.5
+  - spawnData:
+    - enemyPrefab: {fileID: 114729538430417308, guid: ca17e590fd91e4f46a2271be33acf355,
+        type: 2}
+      spawnTime: 2
+    - enemyPrefab: {fileID: 114989035436108382, guid: 5f7236760e231504db575c1b6b2b11df,
+        type: 2}
+      spawnTime: 2
+    - enemyPrefab: {fileID: 114221408030933942, guid: 71db3d5474dae524ea5a4ac352f9f2ae,
+        type: 2}
+      spawnTime: 5
+  - spawnData:
+    - enemyPrefab: {fileID: 114989035436108382, guid: 5f7236760e231504db575c1b6b2b11df,
+        type: 2}
+      spawnTime: 1.5
+    - enemyPrefab: {fileID: 114729538430417308, guid: ca17e590fd91e4f46a2271be33acf355,
+        type: 2}
+      spawnTime: 1
+    - enemyPrefab: {fileID: 114221408030933942, guid: 71db3d5474dae524ea5a4ac352f9f2ae,
+        type: 2}
+      spawnTime: 3
   playerHealth: {fileID: 1290632333}
-  enemy: {fileID: 100002, guid: ca17e590fd91e4f46a2271be33acf355, type: 2}
-  spawnTime: 3
   spawnPoints:
   - {fileID: 345275349}
+  - {fileID: 1725468539}
+  - {fileID: 933997770}
 --- !u!4 &14871712
 Transform:
   m_ObjectHideFlags: 0
@@ -2467,7 +2461,7 @@ ParticleSystemRenderer:
   m_ReflectionProbeUsage: 0
   m_RenderingLayerMask: 4294967295
   m_Materials:
-  - {fileID: 2100000, guid: 843e00eafabf2654a9f3cba744f40d4b, type: 2}
+  - {fileID: 10301, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -7185,6 +7179,10 @@ Prefab:
       propertyPath: m_RootOrder
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 12000000, guid: 8ef56bbcd3977b84fb1fc9f1d7b29f94, type: 2}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e1b9455488ff0e644b669dc71887ccb9, type: 2}
     m_RemovedComponents:
     - {fileID: 19900000, guid: 8ef56bbcd3977b84fb1fc9f1d7b29f94, type: 2}
     - {fileID: 19800000, guid: 8ef56bbcd3977b84fb1fc9f1d7b29f94, type: 2}
