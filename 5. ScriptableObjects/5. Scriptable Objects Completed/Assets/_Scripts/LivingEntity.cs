@@ -3,6 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Completed {
+	public class DamageInfo {
+		public int amount;
+		public Vector3 point;
+		public AmmoType ammoType;
+	}
+
 	public class LivingEntity : MonoBehaviour {
 		public int m_StartingHealth;
 		public int CurrentHealth { get; protected set; }
@@ -20,9 +26,9 @@ namespace Completed {
 			CurrentHealth = m_StartingHealth;
 		}
 
-		public virtual void TakeDamage(int amount, Vector3? hitPoint = null) {
+		public virtual void TakeDamage(DamageInfo info) {
 
-			CurrentHealth -= amount;
+			CurrentHealth -= info.amount;
 			m_Audio.Play();
 
 			if (CurrentHealth <= 0 && !m_IsDead) {

@@ -141,34 +141,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a0aca954c6f3d9e4695a74b5b5463e65, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_GameSettings: {fileID: 11400000, guid: 5685efe6fd07f244c919bdab3b069a4b, type: 2}
   m_DifficultyData:
-  - spawnData:
-    - enemyPrefab: {fileID: 114729538430417308, guid: ca17e590fd91e4f46a2271be33acf355,
-        type: 2}
-      spawnTime: 2
-    - enemyPrefab: {fileID: 114989035436108382, guid: 5f7236760e231504db575c1b6b2b11df,
-        type: 2}
-      spawnTime: 2.5
-  - spawnData:
-    - enemyPrefab: {fileID: 114729538430417308, guid: ca17e590fd91e4f46a2271be33acf355,
-        type: 2}
-      spawnTime: 2
-    - enemyPrefab: {fileID: 114989035436108382, guid: 5f7236760e231504db575c1b6b2b11df,
-        type: 2}
-      spawnTime: 2
-    - enemyPrefab: {fileID: 114221408030933942, guid: 71db3d5474dae524ea5a4ac352f9f2ae,
-        type: 2}
-      spawnTime: 5
-  - spawnData:
-    - enemyPrefab: {fileID: 114989035436108382, guid: 5f7236760e231504db575c1b6b2b11df,
-        type: 2}
-      spawnTime: 1.5
-    - enemyPrefab: {fileID: 114729538430417308, guid: ca17e590fd91e4f46a2271be33acf355,
-        type: 2}
-      spawnTime: 1
-    - enemyPrefab: {fileID: 114221408030933942, guid: 71db3d5474dae524ea5a4ac352f9f2ae,
-        type: 2}
-      spawnTime: 3
+  - {fileID: 11400000, guid: fc4ab2bd68f86c4419862918dcf8223e, type: 2}
+  - {fileID: 11400000, guid: de56c336a71af5d49839395c2b3fb481, type: 2}
+  - {fileID: 11400000, guid: 9c827a79f1c0f084fafb45615425cecd, type: 2}
   playerHealth: {fileID: 1290632333}
   spawnPoints:
   - {fileID: 345275349}
@@ -7147,6 +7124,11 @@ Prefab:
       propertyPath: tester.Array.size
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 114748318955699348, guid: 8ef56bbcd3977b84fb1fc9f1d7b29f94,
+        type: 2}
+      propertyPath: m_GunData.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 400006, guid: 8ef56bbcd3977b84fb1fc9f1d7b29f94, type: 2}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -7183,6 +7165,24 @@ Prefab:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e1b9455488ff0e644b669dc71887ccb9, type: 2}
+    - target: {fileID: 114748318955699348, guid: 8ef56bbcd3977b84fb1fc9f1d7b29f94,
+        type: 2}
+      propertyPath: m_GunData.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 0a6d51770806666458d7c831de50d3ed,
+        type: 2}
+    - target: {fileID: 114748318955699348, guid: 8ef56bbcd3977b84fb1fc9f1d7b29f94,
+        type: 2}
+      propertyPath: m_GunData.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 1e29a571b58aedd488c4e0256da6dc24,
+        type: 2}
+    - target: {fileID: 114748318955699348, guid: 8ef56bbcd3977b84fb1fc9f1d7b29f94,
+        type: 2}
+      propertyPath: m_GunData.Array.data[2]
+      value: 
+      objectReference: {fileID: 11400000, guid: 59589905f2966cb44b70dae812291e22,
+        type: 2}
     m_RemovedComponents:
     - {fileID: 19900000, guid: 8ef56bbcd3977b84fb1fc9f1d7b29f94, type: 2}
     - {fileID: 19800000, guid: 8ef56bbcd3977b84fb1fc9f1d7b29f94, type: 2}

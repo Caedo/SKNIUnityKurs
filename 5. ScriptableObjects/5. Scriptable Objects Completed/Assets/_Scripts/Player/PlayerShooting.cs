@@ -4,15 +4,6 @@ using UnitySampleAssets.CrossPlatformInput;
 
 namespace Completed {
 
-    [System.Serializable]
-    public class GunData {
-        public int damagePerShot = 20; // The damage inflicted by each bullet.
-        public float timeBetweenBullets = 0.15f; // The time between each shot.
-        public float range = 100f; // The distance the gun can fire.
-
-        public Color color;
-        public ParticleSystem particles;
-    }
     public class PlayerShooting : MonoBehaviour {
 
         public List<GunData> m_GunData;
@@ -138,7 +129,11 @@ namespace Completed {
                 // If the EnemyHealth component exist...
                 if (enemyHealth != null) {
                     // ... the enemy should take damage.
-                    enemyHealth.TakeDamage(currentGunData.damagePerShot, shootHit.point);
+                    enemyHealth.TakeDamage(new DamageInfo {
+                        amount = currentGunData.damagePerShot,
+                            point = shootHit.point,
+                            ammoType = currentGunData.ammoType
+                    });
                 }
 
                 // Set the second position of the line renderer to the point the raycast hit.

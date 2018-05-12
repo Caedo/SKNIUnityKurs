@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2247b894aca269a42873eb2129545121, type: 3}
+  m_Name: Hard
+  m_EditorClassIdentifier: 
+  spawnData:
+  - enemyPrefab: {fileID: 114729538430417308, guid: ca17e590fd91e4f46a2271be33acf355,
+      type: 2}
+    spawnTime: 1.5
+  - enemyPrefab: {fileID: 114989035436108382, guid: 5f7236760e231504db575c1b6b2b11df,
+      type: 2}
+    spawnTime: 2
+  - enemyPrefab: {fileID: 114221408030933942, guid: 71db3d5474dae524ea5a4ac352f9f2ae,
+      type: 2}
+    spawnTime: 2.5

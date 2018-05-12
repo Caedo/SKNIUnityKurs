@@ -9758,3 +9758,4 @@ MonoBehaviour:
   m_DeathClip: {fileID: 8300000, guid: 62366b8d2c37a49dca550841c741317f, type: 3}
   sinkSpeed: 2.5
   scoreValue: 10
+  m_WeakAgainst: {fileID: 11400000, guid: 8512201a997585246bad1aeef15902a0, type: 2}

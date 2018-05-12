@@ -19,8 +19,8 @@ namespace Completed {
             playerShooting = GetComponentInChildren<PlayerShooting>();
         }
 
-        public override void TakeDamage(int amount, Vector3? hitPoint = null) {
-            base.TakeDamage(amount, hitPoint);
+        public override void TakeDamage(DamageInfo info) {
+            base.TakeDamage(info);
 
             if (OnPlayerHit != null) {
                 OnPlayerHit();

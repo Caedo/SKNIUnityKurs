@@ -5,17 +5,7 @@ using UnityEngine;
 namespace Completed {
     public class EnemyManager : MonoBehaviour {
 
-        [System.Serializable]
-        public class DifficultyData {
-            public List<EnemySpawnData> spawnData;
-        }
-
-        [System.Serializable]
-        public class EnemySpawnData {
-            public EnemyHealth enemyPrefab;
-            public float spawnTime;
-        }
-
+        public GameSettings m_GameSettings;
         public List<DifficultyData> m_DifficultyData;
 
         public PlayerHealth playerHealth; // Reference to the player's heatlh.
@@ -26,9 +16,16 @@ namespace Completed {
         DifficultyData m_CurrentDifficulty;
 
         void Start() {
-            // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
-            //InvokeRepeating("Spawn", spawnTime, spawnTime);
+
+#if UNITY_EDITOR
+            if (GameSettingsManager.Instance) {
+                m_CurrentDifficulty = m_DifficultyData[GameSettingsManager.Instance.DifficultyIndex];
+            } else {
+                m_CurrentDifficulty = m_DifficultyData[m_GameSettings.m_DifficultyIndex];
+            }
+#else
             m_CurrentDifficulty = m_DifficultyData[GameSettingsManager.Instance.DifficultyIndex];
+#endif            
 
             for (int i = 0; i < m_CurrentDifficulty.spawnData.Count; i++) {
                 StartCoroutine(SpawnEnemy(m_CurrentDifficulty.spawnData[i]));

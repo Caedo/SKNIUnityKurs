@@ -5,6 +5,8 @@ namespace Completed {
         public float sinkSpeed = 2.5f; // The speed at which the enemy sinks through the floor when dead.
         public int scoreValue = 10; // The amount added to the player's score when the enemy dies.
 
+        public AmmoType m_WeakAgainst;
+
         ParticleSystem hitParticles; // Reference to the particle system that plays when the enemy is damaged.
         CapsuleCollider capsuleCollider; // Reference to the capsule collider.
         bool isSinking; // Whether the enemy has started sinking through the floor.
@@ -26,14 +28,19 @@ namespace Completed {
             }
         }
 
-        public override void TakeDamage(int amount, Vector3? hitPoint) {
+        public override void TakeDamage(DamageInfo info) {
 
-            hitParticles.transform.position = hitPoint.Value;
+            hitParticles.transform.position = info.point;
+
+            if(m_WeakAgainst != null && info.ammoType == m_WeakAgainst){
+                info.amount *= 2;
+                Debug.Log(info.amount);
+            }
 
             // And play the particles.
             hitParticles.Play();
 
-            base.TakeDamage(amount, hitPoint);
+            base.TakeDamage(info);
         }
 
         protected override void Death() {

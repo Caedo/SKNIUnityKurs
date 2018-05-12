@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7438b7b31c29d49ad34cdfffc81216, type: 3}
+  m_Name: Gun2
+  m_EditorClassIdentifier: 
+  damagePerShot: 30
+  timeBetweenBullets: 0.2
+  range: 100
+  color: {r: 0, g: 0.021287853, b: 0.9529412, a: 1}
+  particles: {fileID: 0}
+  ammoType: {fileID: 11400000, guid: a12679a1919f00a4783dcda40efa7caf, type: 2}
