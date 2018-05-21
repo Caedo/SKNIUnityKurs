@@ -6,13 +6,13 @@
 		_Tint("Tint Color", Color) = (1,1,1,1)
 		_NoiseTex("Noise Texture", 2D) = "white" {}
 		_Intensity("Color Instensity", float) = 1
-		_DistrStr("Distortion Strength", Range(0,5)) = 1
+		_DistrStr("Distortion Strength", Range(0,1)) = 1
+		_Mask("Mask", 2D) = "white" {}
 	}
 	SubShader
 	{
 		Tags { "RenderType"="Transparent" }
 		LOD 100
-		
 
 		Blend One One
 
@@ -38,6 +38,7 @@
 
 			sampler2D _MainTex;
 			sampler2D _NoiseTex;
+			sampler2D _Mask;
 			float4 _MainTex_ST;
 
 			float _Intensity;
@@ -55,8 +56,10 @@
 			fixed4 frag (v2f i) : SV_Target
 			{
 				// sample the texture
-				float distr = tex2D(_NoiseTex, i.uv + _Time.x).r * _DistrStr;
-				fixed4 col = tex2D(_MainTex, i.uv + distr) * _Tint * _Intensity;
+				float2 distrUV = float2(_Time.x, _Time.x);
+				float distr = tex2D(_NoiseTex, i.uv + distrUV).r * _DistrStr;
+				float mask = tex2D(_Mask, i.uv).r;
+				fixed4 col = tex2D(_MainTex, i.uv + distr) * _Tint * _Intensity * mask;
 				return col;
 			}
 			ENDCG

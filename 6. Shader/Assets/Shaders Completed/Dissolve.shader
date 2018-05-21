@@ -6,17 +6,16 @@
 		_Metallic ("Metallic", Range(0,1)) = 0.0
 		_DissolveTex("Dissolve Texture", 2D) = "white" {}
 		_DissolveStr("Dissolve Strength", Range(0,1)) = 0.5
+            [Toggle(ALPHA)] _ALPHA("Use cutoff?", Float) = 1
+		
 	}
 	SubShader {
-		Tags { "RenderType"="Opaque" }
+		Tags { "RenderType"="Transparent" }
 		LOD 200
-
-		Blend SrcAlpha OneMinusSrcAlpha
-		ZWrite On
 
 		CGPROGRAM
 		// Physically based Standard lighting model, and enable shadows on all light types
-		#pragma surface surf Standard fullforwardshadows alpha:fade
+		#pragma surface surf Standard fullforwardshadows alphatest:_ALPHA
 
 		// Use shader model 3.0 target, to get nicer looking lighting
 		#pragma target 3.0
